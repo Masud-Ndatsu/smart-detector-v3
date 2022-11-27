@@ -1,0 +1,187 @@
+body{
+  background-image: unset;
+}
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+/* the hardware section styles below*/
+.hardware-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 10px;
+}
+.hardware-container img {
+  border-radius: 4px;
+  width: 100%;
+}
+.hardware-contents {
+  padding-left: 40px;
+  text-align: justify;
+}
+.sub-contents-container h2 {
+  text-align: center;
+  padding: 20pxs;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding-top: 5px;
+}
+.hardware-contents h1 {
+  font-size: 2rem;
+  text-align: start;
+  line-height: 25px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.sub-contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 15px 0;
+}
+.sub-contents img {
+  width: 100%;
+}
+
+/* about section */
+
+.storyIMG{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+.section1, .section2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 100px;
+    gap: 20px;
+    padding: 20px 40px;
+}
+.section1 .section1-content h1{
+font-size: 2rem;
+font-weight: 700;
+text-align: center;
+text-decoration: underline;
+}
+.section1 .section1-content p{
+    text-align: justify;
+}
+
+.section2 .section2-content{
+    padding: 30px;
+    margin: 0;
+    padding: 10px 0;
+}
+.section2 .section2-content h1{
+   font-size: 1.3rem;
+   font-weight: 700;
+}
+.section2-container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.TayyibIMG{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* the Team section */
+.team-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.team-container .tayyib{
+background-color: #1a57dbdd;
+padding: 10px;
+width: 100%;
+text-align: center;
+border-radius: 6px;
+margin-bottom: 20px;
+color: white;
+}
+.team-container .tayyib .handles{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+.team-container .tayyib .Tayyib{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    margin: auto;
+}
+
+
+@media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hardware-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 10px;
+  }
+  .hardware-container {
+    grid-template-columns: 1fr;
+  }
+  /* the Team section */
+.team-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+}
+
+@media (max-width: 480px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hardware-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 10px;
+  }
+  .hardware-contents {
+    padding-left: unset;
+    text-align: justify;
+    padding: 10px;
+  }
+  .hardware-contents h1 {
+    font-size: 1.5rem;
+    text-align: start;
+    line-height: 25px;
+    font-weight: 800;
+  }
+
+  /* the about section */
+  .section1{
+    grid-template-columns: 1fr;
+  }
+  .section2{
+    grid-template-columns: 1fr;
+  }
+
+  /* the Team section */
+.team-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+}

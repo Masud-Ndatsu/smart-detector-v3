@@ -1,0 +1,5 @@
+.backgroungLayer {
+    background-image: url('../Assets/Farm.jpg');
+    background-position: center;
+    background-size: cover;
+  }

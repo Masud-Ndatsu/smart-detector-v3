@@ -1,0 +1,13 @@
+  .contact-container{
+    display: flex;
+    gap: 30px;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 3px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
