@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema(
     },
     photo: {
       type: String,
-      required: [true, "Please Choose a photo"],
+      // required: [true, "Please Choose a photo"],
       default: "https://i.ibb.co/4pDNDK1/avatar.png",
     },
     phone: {
@@ -39,24 +39,12 @@ const userSchema = mongoose.Schema(
       type: String,
       maxLength: [250, "Bio must not be more than 250 characters"],
     },
+    tokens: [{ type: Object }],
   },
   {
     timestamps: true,
   }
 );
-
-//Encrypt password before saving to DB
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    return next();
-  }
-  
-  //Hash password
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(this.password, salt);
-  this.password = hashedPassword;
-  next()
-});
 
 //export schema
 const user = mongoose.model("user", userSchema);
