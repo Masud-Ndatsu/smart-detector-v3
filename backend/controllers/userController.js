@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-
+const sendEmail = require("../utils/sendEmail");
 const {
   generateToken,
   verifyHash,
@@ -139,19 +139,15 @@ const getUser = asyncHandler(async (req, res) => {
 //**************************
 //Update user
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
-  if (user) {
-    const { _id, name, email, photo, phone, bio } = user;
-
-    user.email = email;
-    user.name = req.body.name || name;
-    user.phone = req.body.phone || phone;
-    user.bio = req.body.bio || bio;
-    user.photo = req.body.photo || photo;
-
-    const updatedUser = await user.save();
-    res.status(200).json({ updateUser });
+  if (req.user) {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        ...req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json({ updatedUser });
   } else {
     res.status(404);
     throw new Error("User Not Found");
@@ -178,7 +174,6 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   //construct a reset Url
   const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${user._id}/${resetToken}`;
-  console.log(resetUrl);
   //constructing the email to be sent to the user
   const message = `
   <h2>Hello ${user.name}</h2>
@@ -195,10 +190,13 @@ const forgotPassword = asyncHandler(async (req, res) => {
   const sent_from = process.env.EMAIL_USER;
 
   try {
-    // await sendEmail(subject, message, send_to, sent_from);
-    res.status(200).json({ success: true, message: "rest email sent" });
+    await sendEmail(subject, message, send_to, sent_from);
+    res
+      .status(200)
+      .json({ success: true, message: "rest email sent", resetUrl });
   } catch (error) {
-    throw new Error("Email not sent try again");
+    console.log(error.message);
+    throw new Error("Email not sent try again: ");
   }
 });
 
@@ -208,7 +206,9 @@ const forgotPassword = asyncHandler(async (req, res) => {
 const resetPassword = asyncHandler(async (req, res) => {
   const { password } = req.body;
   const { resetToken, id } = req.params;
+
   const user = await User.findById(id);
+
   const secret = process.env.JWT_SECRET + user.password;
 
   const userToken = await verifyToken(resetToken, secret);
