@@ -26,7 +26,7 @@ function Login() {
         email: user.email,
         password: user.password,
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response));
     const data = await res.data;
     return data;
   };
@@ -36,16 +36,15 @@ function Login() {
     event.preventDefault();
 
     //http Request
-    sendRequest().then(() => history("/dashboard"));
+    sendRequest()
+      .then(() => history("/dashboard"))
+      .catch((err) => console.log(err));
   };
-
 
   return (
     <div className="flex flex-col align-middle justify-center h-[90vh]">
-
-
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 m-auto">
-        <form className="space-y-6" method="Post" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <h5 className="text-xl font-medium text-gray-900 dark:text-white text-center">
             Sign in to Smart Detector
           </h5>
@@ -70,7 +69,7 @@ function Login() {
           <div>
             <label
               htmlFor="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Your password
             </label>
@@ -98,7 +97,7 @@ function Login() {
               </div>
               <label
                 htmlFor="remember"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Remember me
               </label>

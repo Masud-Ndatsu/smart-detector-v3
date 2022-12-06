@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios  from "axios";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ForgetPassword() {
   const history = useNavigate();
@@ -21,8 +21,8 @@ function ForgetPassword() {
   //send request
   const sendRequest = async () => {
     const res = await axios
-      .post("http://localhost:5000/api/users/forgotpassword/", {
-        email: user.email
+      .post("http://localhost:5000/api/users/forgotPassword/", {
+        email: user.email,
       })
       .catch((err) => console.log(err));
     const data = await res.data;
@@ -40,7 +40,7 @@ function ForgetPassword() {
   return (
     <div className="flex flex-col align-middle justify-center h-[90vh]">
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 m-auto">
-        <form className="space-y-6" method="Post" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <h5 className="text-xl font-medium text-gray-900 dark:text-white text-center">
             Enter your email to reset Password
           </h5>
@@ -62,14 +62,13 @@ function ForgetPassword() {
               required
             />
           </div>
-          
+
           <button
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Reset 
+            Reset
           </button>
-          
         </form>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Register from "./Component/auth/Register";
 import Login from "./Component/auth/Login";
 import Landing from "./Component/Pages/Landing";
@@ -26,7 +25,10 @@ function App() {
         <Route path="/in-touch" element={<Contact />} />
         <Route path="/tryit" element={<Tryit />} />
         <Route path="/Forgetpassword" element={<ForgetPassword />} />
-        <Route path="/resetpassword/:resetToken" element={<ResetPassword />} />
+        <Route
+          path="/resetpassword/:userId/:resetToken"
+          element={<ResetPassword />}
+        />
         <Route path="/emailsent" element={<ResetMessage />} />
       </Routes>
     </BrowserRouter>
